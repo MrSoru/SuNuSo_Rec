@@ -1,0 +1,36 @@
+#			(No borrar "~")
+KeyConexiones			~C:\SuNuSo Build\Resources\Config\ConfigReal.txt
+Conexiones			~C:\SuNuSo Build\Resources\Config\ConfigReal.xml
+RutaWebservice			~https://tics.refividrio.com.mx/rfv-cursos/webservice/rest/server.php
+Token				~2d04c1cf788cf1e58e00e3b6c718f56c
+CRON				~https://tics.refividrio.com.mx/rfv-cursos/admin/cron.php
+PCron				~Dev_Moodle_20
+#EsPrimerUso			~false
+#Cantidad_de_tiempo Demarca la cantidad de tiempo según Tipo_Hora ( 15-2 = 15 Minutos)
+
+#Tipo_hora = -1=Deshabilitado | 0=Milisegundos | 1=Segundos | 2=Minutos | 3=Horas
+
+#Configuración de tiempos: 
+#							(No borrar "-")
+#					Cantidad_de_Tiempo		Tipo_Hora
+#hilo_AuditoriasPt5		~			30	-	2
+#hilo_Alta			~			15	-	2
+#hilo_InscribirUsuarios		~			15 	-	2
+#hilo_Actualizar_RFC		~			15	-	2
+#hilo_Actualizar_Username	~			15	-	2
+#hilo_SyncMoodSurv		~			15	-	2
+#hilo_SyncSurvMood		~			15	-	-1
+#hilo_Suspender			~			1	-	3
+#hilo_Reactivar			~			30	-	2
+#hilo_AuditoriasPt1		~			1	-	3
+#hilo_AuditoriasPt2		~			15	-	2
+hilo_AuditoriasPt3		~			15	-	2
+#hilo_AuditoriasPt4		~			15	-	2
+#hilo_AuditoriasControlPuesto	~			1	-	1
+#hilo_SyncUsersMoodle2Surver	~			30	-	2
+#hilo_CRON			~			24	-	3
+
+#hilo_[Nombre de hilo] ~t-Tt Si se ha de declarar otro hilo en sistema
+#Este es un comentario
+#Las lineas que inician con "#" son Comentarios
+#El archivo debe ser guardado con codificación ANSI
