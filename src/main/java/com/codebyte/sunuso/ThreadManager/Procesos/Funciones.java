@@ -738,7 +738,7 @@ public class Funciones {
             return;
         String LogString = "Evento Auditorias Control Puesto Iniciado el: " + (new SimpleDateFormat("dd/MM/yyyy hh:mm:ss")).format(new Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
         ArrayList<Surver_Control_Puesto> Controles = this.SurverConn.getContolCambios_SinSync();
-        AudPt5_enrollByChange(Controles);
+        //AudPt5_enrollByChange(Controles);
         AudPt6_UnenrollByChange(Controles);
         if (Controles != null)
             for (Surver_Control_Puesto Controle : Controles) {

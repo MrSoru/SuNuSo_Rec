@@ -13,22 +13,22 @@ PCron				~Dev_Moodle_20
 #Configuración de tiempos: 
 #							(No borrar "-")
 #					Cantidad_de_Tiempo		Tipo_Hora
-#hilo_AuditoriasPt5		~			30	-	2
-#hilo_Alta			~			15	-	2
-#hilo_InscribirUsuarios		~			15 	-	2
-#hilo_Actualizar_RFC		~			15	-	2
-#hilo_Actualizar_Username	~			15	-	2
-#hilo_SyncMoodSurv		~			15	-	2
-#hilo_SyncSurvMood		~			15	-	-1
-#hilo_Suspender			~			1	-	3
-#hilo_Reactivar			~			30	-	2
-#hilo_AuditoriasPt1		~			1	-	3
-#hilo_AuditoriasPt2		~			15	-	2
-#hilo_AuditoriasPt3		~			15	-	2
-#hilo_AuditoriasPt4		~			15	-	2
-hilo_AuditoriasControlPuesto	~			1	-	1
-#hilo_SyncUsersMoodle2Surver	~			30	-	2
-#hilo_CRON			~			24	-	3
+hilo_AuditoriasPt5		~			30	-	2
+hilo_Alta			~			15	-	2
+hilo_InscribirUsuarios		~			15 	-	2
+hilo_Actualizar_RFC		~			15	-	2
+hilo_Actualizar_Username	~			15	-	2
+hilo_SyncMoodSurv		~			15	-	2
+hilo_SyncSurvMood		~			15	-	-1
+hilo_Suspender			~			1	-	3
+hilo_Reactivar			~			30	-	2
+hilo_AuditoriasPt1		~			1	-	3
+hilo_AuditoriasPt2		~			15	-	2
+hilo_AuditoriasPt3		~			15	-	2
+hilo_AuditoriasPt4		~			15	-	2
+hilo_AuditoriasControlPuesto	~			1	-	-1
+hilo_SyncUsersMoodle2Surver	~			30	-	2
+hilo_CRON			~			24	-	3
 
 #hilo_[Nombre de hilo] ~t-Tt Si se ha de declarar otro hilo en sistema
 #Este es un comentario

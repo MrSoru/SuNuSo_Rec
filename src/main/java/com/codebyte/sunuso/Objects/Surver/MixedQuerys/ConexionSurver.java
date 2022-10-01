@@ -378,8 +378,8 @@ public class ConexionSurver extends ConectionPostgreSQL {
                 "  AND Cur_Per.activo = FALSE\n" +
                 "  AND (RFC IS NOT NULL OR RFC = '')\n" +
                 "  AND Empl.sincronizado_moodle = TRUE\n" +
-                "  AND Empr.id_empresa NOT IN (6, 7)\n"
-                + "AND AND Empl.id_empleado=1006\n" +///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                "  AND Empr.id_empresa NOT IN (6, 7)\n" +
+                //+ "AND AND Empl.id_empleado=1006\n" +///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 "ORDER BY Cur.Nombre_Corto";
         try {
             Statement STM = this.conn.createStatement();
