@@ -259,7 +259,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
                 "  AND Cur_Per.activo = TRUE\n" +
                 "  AND Empl.sincronizado_moodle = TRUE\n" +
                 "  AND empr.id_empresa NOT IN (6, 7)\n"+ 
-                "  --AND Cur.ischanged=true \n" +
+                "  AND Cur.ischanged=true \n" +
                 "ORDER BY Cur.Nombre_Corto";
         try {
             Statement STM = this.conn.createStatement();
@@ -962,13 +962,12 @@ public class ConexionSurver extends ConectionPostgreSQL {
     
     public boolean ActualizarCursoSurv_ischanged(final String Curso) {
         String QRY = "UPDATE moodle_curso\n" +
-                "    SET actualizado=NOW() --, ischanged=false\n" +
+                "    SET actualizado=NOW(), ischanged=false\n" +
                 "    WHERE Nombre_Corto=?;";
         try {
             PreparedStatement PS = this.conn.prepareStatement(QRY);
             PS.setString(1, Curso);
             PS.addBatch();
-            String q = PS.toString();
             PS.executeBatch();
             PS.close();
             return true;

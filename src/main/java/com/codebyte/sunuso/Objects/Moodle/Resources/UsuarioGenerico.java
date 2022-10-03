@@ -10,6 +10,8 @@ public class UsuarioGenerico {
     private String idNumber;
     private String Departament;
     private String Institution;
+    private String Suspended;
+    private String Reason;
     public UsuarioGenerico() {}
 
     public UsuarioGenerico(String ID, String UserName, String FirstName, String LastName, String FullName, String email, String idNumber, String Departament, String Institution) {
@@ -22,6 +24,22 @@ public class UsuarioGenerico {
         this.idNumber = idNumber;
         this.Departament = Departament;
         this.Institution = Institution;
+    }
+
+    public String getReason() {
+        return Reason;
+    }
+
+    public void setReason(String Reason) {
+        this.Reason = Reason;
+    }
+    
+    public String getSuspended() {
+        return Suspended;
+    }
+
+    public void setSuspended(String Suspended) {
+        this.Suspended = Suspended;
     }
 
     public String getDepartament() {
