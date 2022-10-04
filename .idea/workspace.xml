@@ -12,9 +12,9 @@
     <list default="true" id="11724d4e-ef39-4889-83ec-fd3d89cc02f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Config.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Config.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/Objects/Moodle/Resources/UsuarioGenerico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/Objects/Moodle/Resources/UsuarioGenerico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/Objects/Moodle/WebServiceCreator/MoodleWerbServCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/Objects/Moodle/WebServiceCreator/MoodleWerbServCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/SuNuSoRec_jar/SuNuSoRec.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/Objects/Surver/MixedQuerys/ConexionSurver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/Objects/Surver/MixedQuerys/ConexionSurver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/Resources/Information.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/Resources/Information.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/ThreadManager/Procesos/Funciones.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/ThreadManager/Procesos/Funciones.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -60,18 +60,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/Desarrollo-02/Documents/NetBeansProjects/FirstWebServ",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.13768116",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Desarrollo-02/Documents/NetBeansProjects/FirstWebServ&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.13768116&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.codebyte.sunuso.OutputFilesWritter" />
@@ -174,8 +174,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/ThreadManager/Procesos/Funciones.java</url>
-          <line>679</line>
+          <line>750</line>
           <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/codebyte/sunuso/ThreadManager/Procesos/Funciones.java</url>
+          <line>871</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

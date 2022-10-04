@@ -145,7 +145,7 @@ public class Funciones {
                     }
 
                 });
-                
+
 //                for (UsuarioSurver Usuario : Usuarios) {
 //                    UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Usuario.getRFC());
 //                    if (UsuarioGen == null) {
@@ -229,9 +229,9 @@ public class Funciones {
                     }
                     if (MoodleWerbServCreator.asignarUsuarioCurso(this.Conf
                             .getCLI_WEBSERVICE_ROOT(), this.Conf
-                                    .getCLI_WEBSERVICE_TOKEN(), usuarioGenerico
-                                    .getID(), CursoMoodle
-                                    .getID(), "5")) {
+                            .getCLI_WEBSERVICE_TOKEN(), usuarioGenerico
+                            .getID(), CursoMoodle
+                            .getID(), "5")) {
                         UsuarioSurver Us = this.SurverConn.GetUsuarioporRFC(CurA.getRFC());
                         if (Us != null) {
                             ErrnoMsg += "El usuario: " + Us.getUsuario() + " - " + Us.getRFC() + "Ha sido inscrito al curso: " + CurA.getCurso() + TextManagement.NewLine();
@@ -249,10 +249,10 @@ public class Funciones {
                 }
                 if (!isEnrolled2Course(UsuarioGen, CursoMoodle)
                         && MoodleWerbServCreator.asignarUsuarioCurso(this.Conf
-                                .getCLI_WEBSERVICE_ROOT(), this.Conf
-                                        .getCLI_WEBSERVICE_TOKEN(), UsuarioGen
-                                        .getID(), CursoMoodle
-                                        .getID(), "5")) {
+                        .getCLI_WEBSERVICE_ROOT(), this.Conf
+                        .getCLI_WEBSERVICE_TOKEN(), UsuarioGen
+                        .getID(), CursoMoodle
+                        .getID(), "5")) {
                     UsuarioSurver Us = this.SurverConn.GetUsuarioporRFC(CurA.getRFC());
                     if (Us != null) {
                         ErrnoMsg += "El usuario: " + Us.getUsuario() + "Ha sido inscrito al curso: " + TextManagement.NewLine() + CurA.getCurso() + TextManagement.NewLine() + TextManagement.Separator();
@@ -261,7 +261,7 @@ public class Funciones {
             }
         }
 
-        
+
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
 
         ErrnoMsg += TextManagement.Separator() + TextManagement.NewLine(4);
@@ -296,7 +296,6 @@ public class Funciones {
                     } else {
                         Usuario.setReason("El usuario" + Usuario.getUserName() + " RFC: " + Usuario.getUserName() + " No existe en " + Usuario.getIdNumber() + Information.Fuente + TextManagement.NewLine());
                     }
-
                 }
             });
 //            for (UsuarioGenerico Usuario : Usuarios) {
@@ -603,9 +602,15 @@ public class Funciones {
                 Courses Curs = MoodleWerbServCreator.searchCourseShortName(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), us.getCurso());
                 if (Curs != null) {
                     ArrayList<UsuarioGenerico> EnrrolledUsers = MoodleWerbServCreator.getUsersFromCourse(Conf.getCLI_WEBSERVICE_ROOT(), Conf.getCLI_WEBSERVICE_TOKEN(), Curs.getID());
-                    for (UsuarioGenerico User : EnrrolledUsers) {
-                        MoodleWerbServCreator.bajaCursoUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), User.getID(), Curs.getID());
+                    if (EnrrolledUsers != null) {
+                        EnrrolledUsers.stream().forEach(User -> {
+                            MoodleWerbServCreator.bajaCursoUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), User.getID(), Curs.getID());
+                        });
                     }
+
+//                    for (UsuarioGenerico User : EnrrolledUsers) {
+//                        MoodleWerbServCreator.bajaCursoUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), User.getID(), Curs.getID());
+//                    }
                     LogString += ("Los Usuarios del curso (" + Curs.getNombreCorto() + ") " + Curs.getNombreMostrado() + " fueron Desinscritos");
                 }
             }
@@ -753,7 +758,7 @@ public class Funciones {
         if (Controles != null) {
             for (Surver_Control_Puesto Control : Controles) {
                 Surver_Curso Curso = new Surver_Curso();
-                ArrayList<Surver_Curso> Cursos = this.SurverConn.getCoursesDiferences(Control.getNuevo_perfil(), Control.getViejo_perfil());
+                ArrayList<Surver_Curso> Cursos = this.SurverConn.getCoursesDiferences(Control.getViejo_perfil(), Control.getNuevo_perfil());
                 if (Cursos != null) {
                     for (Surver_Curso Curso1 : Cursos) {
                         Courses CurMood = MoodleWerbServCreator.searchCourseShortName(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Curso1.getNombre_Corto());
@@ -802,7 +807,7 @@ public class Funciones {
         if (Controles != null) {
             for (Surver_Control_Puesto Control : Controles) {
                 //Surver_Curso Curso = new Surver_Curso();
-                ArrayList<Surver_Curso> Cursos = this.SurverConn.getCoursesDiferences(Control.getViejo_perfil(), Control.getNuevo_perfil());
+                ArrayList<Surver_Curso> Cursos = this.SurverConn.getCoursesDiferences(Control.getNuevo_perfil(), Control.getViejo_perfil());
                 if (Cursos != null) {
                     for (Surver_Curso Curso1 : Cursos) {
                         Courses CurMood = MoodleWerbServCreator.searchCourseShortName(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Curso1.getNombre_Corto());
@@ -860,7 +865,7 @@ public class Funciones {
         LogString += "Evento Auditorias Control Puesto Terminado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine()
                 + TextManagement.Separator() + TextManagement.NewLine();
         LogString += "Tiempo Transcurrido de sistema: " + TextManagement.TransformSecondsToTime(TimeTranscurred);
-        WinLog.WriteEvent(LogString, EntryType.Information, 95);
+        WinLog.WriteEvent(LogString, EntryType.Information, 96);
     }
 
     private boolean isEnrolled2Course(UsuarioGenerico Usuario, Courses Curso) {

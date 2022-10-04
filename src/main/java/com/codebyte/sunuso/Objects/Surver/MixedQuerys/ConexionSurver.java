@@ -11,6 +11,7 @@ import com.codebyte.sunuso.Resources.Information;
 import com.codebyte.sunuso.Resources.TextManagement;
 import com.codebyte.sunuso.WindowsEventLogWritter.EntryType;
 import com.codebyte.sunuso.WindowsEventLogWritter.WindowsLog;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +25,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
 
     private final Configuration Conf;
 
-    public ConexionSurver(final Configuration Conf,final String ThreadName) {
+    public ConexionSurver(final Configuration Conf, final String ThreadName) {
         super(Conf, 0);
         this.ThreadName = ThreadName;
         this.Conf = Conf;
@@ -96,7 +97,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
         } catch (SQLException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetInscriptions()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
-        } catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetInscriptions()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -163,7 +164,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
         } catch (SQLException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetInscriptions()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
-        }catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetInscriptions()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -229,7 +230,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
         } catch (SQLException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetUninscriptions()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
-        }catch (NullPointerException Ex){
+        } catch (NullPointerException Ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetUninscriptions()" + TextManagement.NewLine(3) + Ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -258,7 +259,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
                 "  AND Cur.activo = TRUE\n" +
                 "  AND Cur_Per.activo = TRUE\n" +
                 "  AND Empl.sincronizado_moodle = TRUE\n" +
-                "  AND empr.id_empresa NOT IN (6, 7)\n"+ 
+                "  AND empr.id_empresa NOT IN (6, 7)\n" +
                 "  AND Cur.ischanged=true \n" +
                 "ORDER BY Cur.Nombre_Corto";
         try {
@@ -321,7 +322,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
         } catch (SQLException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetCourseUninscriptions_Empl0_Cur1_Per1()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
-        }catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetCourseUninscriptions_Empl0_Cur1_Per1()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -348,7 +349,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
         } catch (SQLException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetCourseUninscriptions_Empl1_Cur0_Per1()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
-        }catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetCourseUninscriptions_Empl1_Cur0_Per1()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -397,7 +398,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
         } catch (SQLException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetCourseUninscriptions_Empl1_Cur0_Per0()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
-        }catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetCourseUninscriptions_Empl1_Cur0_Per0()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -490,7 +491,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
         } catch (SQLException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetCourseUninscriptions_Empl0_Cur0_Per0()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
-        }catch (NullPointerException ex){
+        } catch (NullPointerException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetCourseUninscriptions_Empl0_Cur0_Per0()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -538,7 +539,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
             STM.close();
             RS.close();
             return UsuarioSur;
-        } catch (SQLException|NullPointerException ex) {
+        } catch (SQLException | NullPointerException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetUsuarioporRFC()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -585,7 +586,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
             }
             STM.close();
             RS.close();
-        } catch (SQLException|NullPointerException ex) {
+        } catch (SQLException | NullPointerException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetUsuarioporUsername()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -593,7 +594,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
     }
 
     public UsuarioSurver GetUsuarioporIdSurver(final int id) {
-        UsuarioSurver UsuarioSur=null;
+        UsuarioSurver UsuarioSur = null;
         String QRY = "SELECT Empl.Nombre                                                                              AS Nombre\n" +
                 "     , Empl.paterno                                                                             AS Paterno\n" +
                 "     , COALESCE(Empl.materno,'')                                                                AS Materno\n" +
@@ -633,7 +634,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
             }
             STM.close();
             RS.close();
-        } catch (SQLException|NullPointerException ex) {
+        } catch (SQLException | NullPointerException ex) {
             this.WinLog.WriteEvent("No se logró obtener datos: ConexionSurver.GetUsuarioporIdSurver()" + TextManagement.NewLine(3) + ex.getMessage(), EntryType.Warning, 300);
             return null;
         }
@@ -652,13 +653,13 @@ public class ConexionSurver extends ConectionPostgreSQL {
             Pstm.executeBatch();
             Pstm.close();
             return true;
-        } catch (SQLException|NullPointerException Ex) {
+        } catch (SQLException | NullPointerException Ex) {
             this.WinLog.WriteEvent("No se logró actualizar el dato UsuarioSurver.setSync()" + TextManagement.NewLine(3) + Ex.getMessage(), EntryType.Error, 301);
             return false;
         }
     }
 
-    public boolean GuardarCurso(final boolean EsInsert,final Surver_Curso Curso) {
+    public boolean GuardarCurso(final boolean EsInsert, final Surver_Curso Curso) {
         if (EsInsert)
             return GuardarCursoSurv(Curso);
         return ActualizarCursoSurv(Curso);
@@ -860,7 +861,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
         }
     }
 
-    public ArrayList<Surver_Curso> getCoursesDiferences(final int param1,final int param2) {
+    public ArrayList<Surver_Curso> getCoursesDiferences(final int param1, final int param2) {
         ArrayList<Surver_Curso> Cursos = new ArrayList<>();
         String QRY = "(SELECT Cur.*\n" +
                 "FROM moodle_curso Cur\n" +
@@ -902,19 +903,19 @@ public class ConexionSurver extends ConectionPostgreSQL {
     public ArrayList<Surver_Control_Puesto> getContolCambios_SinSync() {
         ArrayList<Surver_Control_Puesto> Controles = new ArrayList<>();
         String QRY = "SELECT pu.* FROM moodle_Control_Puesto AS pu  \n" +
-                            "INNER JOIN Empleado Empl\n" +
-                            "ON pu.id_empleado=Empl.id_empleado \n" +
-                            "         INNER JOIN segmento AS Seg\n" +
-                            "                    ON Seg.id_segmento = empl.id_segmento\n" +
-                            "         INNER JOIN Empresa AS Empr\n" +
-                            "                    ON Empr.id_empresa = Seg.id_empresa\n" +
-                            "         LEFT JOIN ev_puesto AS pue\n" +
-                            "                   ON Empl.ev_puesto_id = Pue.ev_puesto_id\n" +
-                            "WHERE \n" +
-                            "not (pu.viejo_perfil is null or pu.nuevo_perfil is null) \n" +
-                            "AND pu.Sincronized=false\n" +
-                            "AND Empr.id_empresa NOT IN (6, 7)\n" +
-                            "AND Empl.sincronizado_moodle = TRUE";
+                "INNER JOIN Empleado Empl\n" +
+                "ON pu.id_empleado=Empl.id_empleado \n" +
+                "         INNER JOIN segmento AS Seg\n" +
+                "                    ON Seg.id_segmento = empl.id_segmento\n" +
+                "         INNER JOIN Empresa AS Empr\n" +
+                "                    ON Empr.id_empresa = Seg.id_empresa\n" +
+                "         LEFT JOIN ev_puesto AS pue\n" +
+                "                   ON Empl.ev_puesto_id = Pue.ev_puesto_id\n" +
+                "WHERE \n" +
+                "not (pu.viejo_perfil is null or pu.nuevo_perfil is null) \n" +
+                "AND pu.Sincronized=false\n" +
+                "AND Empr.id_empresa NOT IN (6, 7)\n" +
+                "AND Empl.sincronizado_moodle = TRUE\n";
         try {
             Statement STM = this.conn.createStatement();
             ResultSet RS = STM.executeQuery(QRY);
@@ -959,7 +960,7 @@ public class ConexionSurver extends ConectionPostgreSQL {
                         "Conexion abrierta" :
                         "Conexion Cerrada");
     }
-    
+
     public boolean ActualizarCursoSurv_ischanged(final String Curso) {
         String QRY = "UPDATE moodle_curso\n" +
                 "    SET actualizado=NOW(), ischanged=false\n" +
