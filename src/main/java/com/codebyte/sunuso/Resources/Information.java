@@ -3,7 +3,7 @@ package com.codebyte.sunuso.Resources;
 import java.util.ArrayList;
 
 public class Information {
-    public static String Version = " v2.4.8";
+    public static String Version = " v2.5.1 rev2";
 
     public static String ProgramName = "SuNuSo";
 

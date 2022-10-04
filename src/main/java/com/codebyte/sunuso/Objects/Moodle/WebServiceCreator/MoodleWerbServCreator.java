@@ -594,6 +594,9 @@ public class MoodleWerbServCreator {
                                     case "institution":
                                         User.setInstitution(ValueElement.getTextContent());
                                         break;
+                                    case "suspended": 
+                                        User.setSuspended(ValueElement.getTextContent());
+                                        break;
                                 }
                             }
                         }

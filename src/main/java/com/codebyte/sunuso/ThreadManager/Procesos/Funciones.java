@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Funciones {
+
     Configuration Conf;
 
     String LogMsg;
@@ -104,15 +105,18 @@ public class Funciones {
         }
     }
 
-    public synchronized boolean EnrolltoPlatfrom() {
+    public synchronized void EnrolltoPlatfrom() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("DarDeAlta()"))
-            return false;
+        if (!CheckConnection("DarDeAlta()")) {
+            return;
+        }
         String LogString = "Evento Dar de Alta iniciado el:" + (new SimpleDateFormat("dd/MM/yyyy hh:mm:ss")).format(new Date()) + TextManagement.NewLine();
         ArrayList<UsuarioSurver> Usuarios = this.SurverConn.GetInscriptions();
         if (Usuarios != null) {
-            if (!Usuarios.isEmpty())
-                for (UsuarioSurver Usuario : Usuarios) {
+            if (!Usuarios.isEmpty()) {
+
+                Usuarios.stream().forEach(Usuario -> {
+
                     UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Usuario.getRFC());
                     if (UsuarioGen == null) {
                         Response Res = MoodleWerbServCreator.CreateUser1(this.Conf.getCLI_WEBSERVICE_ROOT(),
@@ -128,99 +132,136 @@ public class Funciones {
                                 Usuario.getPuesto());
                         if (Res == null) {
                             Usuario.setReason("No se logró inscribir el usuario, (Revisar datos de usuario/Duplicidad en la plataforma/Error de respuesta Webservices/Error de Conexión");
-                            continue;
+                        } else if (this.SurverConn.setSync(Integer.valueOf(Usuario.getId_empleado()))) {
+                            Usuario.setReason("¡Completa!");
+                        } else {
+                            Usuario.setReason("¡Completa en " + Information.Plataforma + "! Pero No se acualizó Sincronizado en " + Information.Fuente);
                         }
-                        if (this.SurverConn.setSync(Integer.valueOf(Usuario.getId_empleado()))) {
-                            Usuario.setReason("Completa!");
-                            continue;
-                        }
-                        Usuario.setReason("completa en " + Information.Plataforma + "! Pero No se acualizSincronizado en " + Information.Fuente);
-                        continue;
                     }
                     if (this.SurverConn.setSync(Integer.valueOf(Usuario.getId_empleado()))) {
-                        Usuario.setReason("El usuario ya estInscrito");
-                        continue;
+                        Usuario.setReason("El usuario ya está Inscrito");
+                    } else {
+                        Usuario.setReason("El usuario ya está Inscrito Pero No se actualizó Sincronizado en " + Information.Fuente);
                     }
-                    Usuario.setReason("El usuario ya estInscrito Pero No se acualizSincronizado en " + Information.Fuente);
-                }
-        }        else {
-            return false;
+
+                });
+
+//                for (UsuarioSurver Usuario : Usuarios) {
+//                    UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Usuario.getRFC());
+//                    if (UsuarioGen == null) {
+//                        Response Res = MoodleWerbServCreator.CreateUser1(this.Conf.getCLI_WEBSERVICE_ROOT(),
+//                                this.Conf.getCLI_WEBSERVICE_TOKEN(),
+//                                Usuario.getUsuario(),
+//                                "Cursos123",
+//                                Usuario.getNombre(),
+//                                Usuario.getPaterno() + " " + Usuario.getPaterno(),
+//                                Usuario.getCorreo(),
+//                                Usuario.getRFC(),
+//                                Usuario.getSegmento(),
+//                                Usuario.getEmpresa(),
+//                                Usuario.getPuesto());
+//                        if (Res == null) {
+//                            Usuario.setReason("No se logró inscribir el usuario, (Revisar datos de usuario/Duplicidad en la plataforma/Error de respuesta Webservices/Error de Conexión");
+//                            continue;
+//                        }
+//                        if (this.SurverConn.setSync(Integer.valueOf(Usuario.getId_empleado()))) {
+//                            Usuario.setReason("¡Completa!");
+//                            continue;
+//                        }
+//                        Usuario.setReason("¡Completa en " + Information.Plataforma + "! Pero No se acualizó Sincronizado en " + Information.Fuente);
+//                        continue;
+//                    }
+//                    if (this.SurverConn.setSync(Integer.valueOf(Usuario.getId_empleado()))) {
+//                        Usuario.setReason("El usuario ya está Inscrito");
+//                        continue;
+//                    }
+//                    Usuario.setReason("El usuario ya estInscrito Pero No se acualizSincronizado en " + Information.Fuente);
+//                }
+//
+            }
         }
-            String DataText = "";
-            DataText += ""
-                    + TextManagement.NewTab(3) + "-----------------------------------------------------------------------------------" + TextManagement.NewLine()
-                    + TextManagement.NewTab(3) + "-               Resultados               -" + TextManagement.NewLine()
-                    + TextManagement.NewTab(3) + "-----------------------------------------------------------------------------------" + TextManagement.NewLine(3);
-            DataText += UsuarioSurver.GetConsoleDisplayTable(Usuarios) + TextManagement.NewLine(2)
-                    + TextManagement.Separator() + TextManagement.NewLine();
+        String DataText = "";
+        DataText += ""
+                + TextManagement.NewTab(3) + "-----------------------------------------------------------------------------------" + TextManagement.NewLine()
+                + TextManagement.NewTab(3) + "-               Resultados               -" + TextManagement.NewLine()
+                + TextManagement.NewTab(3) + "-----------------------------------------------------------------------------------" + TextManagement.NewLine(3);
+        DataText += UsuarioSurver.GetConsoleDisplayTable(Usuarios) + TextManagement.NewLine(2)
+                + TextManagement.Separator() + TextManagement.NewLine();
 
-            CreateFile.Writefile("Log_DarDeAlta_1", FileExtention.txt, DataText);
+        CreateFile.Writefile("Log_DarDeAlta_1", FileExtention.txt, DataText);
 
-            TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
-            LogString += "Dar de Alta Terminado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
-            LogString += "Tiempo Transcurrido de sistema: " + TextManagement.TransformSecondsToTime(TimeTranscurred);
-            WinLog.WriteEvent(LogString, EntryType.Information, 1);
-            return true;
+        TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
+        LogString += "Dar de Alta Terminado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
+        LogString += "Tiempo Transcurrido de sistema: " + TextManagement.TransformSecondsToTime(TimeTranscurred);
+        WinLog.WriteEvent(LogString, EntryType.Information, 1);
     }
 
     public void EnrollUsers() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("InscribirUsuarios()"))
+        if (!CheckConnection("InscribirUsuarios()")) {
             return;
+        }
         ArrayList<Surver_Asignacion_Cursos> CurAs = SurverConn.GetCourseInscriptions();
         String ultimoCurso = "";
         String LogMsg = "Evento Inscribir usuarios iniciado el:" + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine();
         String ErrnoMsg = "";
         Courses CursoMoodle = null;
-        if (CurAs != null && !CurAs.isEmpty())
+        if (CurAs != null && !CurAs.isEmpty()) {
+
             for (Surver_Asignacion_Cursos CurA : CurAs) {
                 if (!ultimoCurso.equals(CurA.getCurso())) {
+                    //PROCESO DE ACTUALIZAR EL CAMPO IS CHANGED 
                     SurverConn.ActualizarCursoSurv_ischanged(CurA.getCurso());
+                    //FIN PROCESO DE ACTUALIZAR EL CAMPO IS CHANGED 
                     CursoMoodle = MoodleWerbServCreator.searchCourseShortName(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), CurA.getCurso());
                     if (CursoMoodle == null) {
-                        ErrnoMsg += "El curso " +  CurA.getCurso() + " No existe/Está Inactivo en moodle " + TextManagement.NewLine();
+                        ErrnoMsg += "El curso " + CurA.getCurso() + " No existe/Está Inactivo en moodle " + TextManagement.NewLine();
                         continue;
                     }
                     ultimoCurso = CurA.getCurso();
                     UsuarioGenerico usuarioGenerico = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), CurA.getRFC());
                     if (usuarioGenerico == null) {
                         UsuarioSurver Us = this.SurverConn.GetUsuarioporRFC(CurA.getRFC());
-                        if (Us != null)
+                        if (Us != null) {
                             ErrnoMsg += "El usuario con RFC: " + CurA.getRFC() + "No fue inscrito al curso: " + TextManagement.NewLine() + CurA.getCurso() + "Ya que no existe en la plataforma " + Information.Plataforma + TextManagement.NewLine();
+                        }
                         continue;
                     }
-                    if (!isEnrolled2Course(usuarioGenerico, CursoMoodle) &&
-                            MoodleWerbServCreator.asignarUsuarioCurso(this.Conf
-                                    .getCLI_WEBSERVICE_ROOT(), this.Conf
-                                    .getCLI_WEBSERVICE_TOKEN(), usuarioGenerico
-                                    .getID(), CursoMoodle
-                                    .getID(), "5")) {
+                    if (MoodleWerbServCreator.asignarUsuarioCurso(this.Conf
+                            .getCLI_WEBSERVICE_ROOT(), this.Conf
+                            .getCLI_WEBSERVICE_TOKEN(), usuarioGenerico
+                            .getID(), CursoMoodle
+                            .getID(), "5")) {
                         UsuarioSurver Us = this.SurverConn.GetUsuarioporRFC(CurA.getRFC());
-                        if (Us != null)
+                        if (Us != null) {
                             ErrnoMsg += "El usuario: " + Us.getUsuario() + " - " + Us.getRFC() + "Ha sido inscrito al curso: " + CurA.getCurso() + TextManagement.NewLine();
+                        }
                     }
                     continue;
                 }
                 UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), CurA.getRFC());
                 if (UsuarioGen == null) {
                     UsuarioSurver Us = this.SurverConn.GetUsuarioporRFC(CurA.getRFC());
-                    if (Us != null)
+                    if (Us != null) {
                         ErrnoMsg += "El usuario: " + Us.getUsuario() + " No fue inscrito al curso: " + CurA.getCurso() + "Ya que no existe en la plataforma en linea Moodle" + Information.Plataforma + TextManagement.NewLine();
+                    }
                     continue;
                 }
-                if (!isEnrolled2Course(UsuarioGen, CursoMoodle) &&
-                        MoodleWerbServCreator.asignarUsuarioCurso(this.Conf
-                                .getCLI_WEBSERVICE_ROOT(), this.Conf
-                                .getCLI_WEBSERVICE_TOKEN(), UsuarioGen
-                                .getID(), CursoMoodle
-                                .getID(), "5")) {
+                if (!isEnrolled2Course(UsuarioGen, CursoMoodle)
+                        && MoodleWerbServCreator.asignarUsuarioCurso(this.Conf
+                        .getCLI_WEBSERVICE_ROOT(), this.Conf
+                        .getCLI_WEBSERVICE_TOKEN(), UsuarioGen
+                        .getID(), CursoMoodle
+                        .getID(), "5")) {
                     UsuarioSurver Us = this.SurverConn.GetUsuarioporRFC(CurA.getRFC());
-                    if (Us != null)
+                    if (Us != null) {
                         ErrnoMsg += "El usuario: " + Us.getUsuario() + "Ha sido inscrito al curso: " + TextManagement.NewLine() + CurA.getCurso() + TextManagement.NewLine() + TextManagement.Separator();
+                    }
                 }
             }
-        
-        //PROCESO DE ACTUALIZAR EL CAMPO IS CHANGED 
+        }
+
+
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
 
         ErrnoMsg += TextManagement.Separator() + TextManagement.NewLine(4);
@@ -238,21 +279,41 @@ public class Funciones {
             return;
         }
         ArrayList<UsuarioGenerico> Usuarios = MoodleWerbServCreator.AllUsers(Conf.getCLI_WEBSERVICE_ROOT(), Conf.getCLI_WEBSERVICE_TOKEN());
-        UsuarioSurver Usuario_Surver;
+//        UsuarioSurver Usuario_Surver;
         String Exportmsg = "Evento Actualizar informacion de usuario por RFC Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
         String LogString = "";
-        if (Usuarios != null)
-            for (UsuarioGenerico Usuario : Usuarios) {
-                Usuario_Surver = this.SurverConn.GetUsuarioporRFC(Usuario.getIdNumber());
+        if (Usuarios != null) {
+            if (!Usuarios.isEmpty()) {
+                Usuarios.removeIf(Usuario -> Usuario.getSuspended().equals("1"));
+            }
+            Usuarios.stream().forEach(Usuario -> {
+                UsuarioSurver Usuario_Surver = this.SurverConn.GetUsuarioporRFC(Usuario.getIdNumber());
                 if (Usuario_Surver != null) {
                     if (Usuario_Surver.getId_empleado() != -1) {
-                        if (MoodleWerbServCreator.ModificarUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Usuario.getID(), Usuario_Surver))
-                            LogString += "Nuevos datos de usuario " + Usuario.getUserName() + ": " + Usuario_Surver.getUsuario() + ", " + Usuario_Surver.GetNombreCompleto() + ", " + Usuario_Surver.getEmpresa() + ", " + Usuario_Surver.getSegmento() + ", " + Usuario_Surver.getRFC() + TextManagement.NewLine();
-                        continue;
+                        if (MoodleWerbServCreator.ModificarUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Usuario.getID(), Usuario_Surver)) {
+                            Usuario.setReason("Nuevos datos de usuario " + Usuario.getUserName() + ": " + Usuario_Surver.getUsuario() + ", " + Usuario_Surver.GetNombreCompleto() + ", " + Usuario_Surver.getEmpresa() + ", " + Usuario_Surver.getSegmento() + ", " + Usuario_Surver.getRFC() + TextManagement.NewLine());
+                        }
+                    } else {
+                        Usuario.setReason("El usuario" + Usuario.getUserName() + " RFC: " + Usuario.getUserName() + " No existe en " + Usuario.getIdNumber() + Information.Fuente + TextManagement.NewLine());
                     }
-                    LogString += "El usuario" + Usuario.getUserName() + " RFC: " + Usuario.getUserName() + " No existe en " + Usuario.getIdNumber() + Information.Fuente + TextManagement.NewLine();
                 }
-            }
+            });
+//            for (UsuarioGenerico Usuario : Usuarios) {
+//                Usuario_Surver = this.SurverConn.GetUsuarioporRFC(Usuario.getIdNumber());
+//                if (Usuario_Surver != null) {
+//                    if (Usuario_Surver.getId_empleado() != -1) {
+//                        if (MoodleWerbServCreator.ModificarUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Usuario.getID(), Usuario_Surver)) {
+//                            LogString += "Nuevos datos de usuario " + Usuario.getUserName() + ": " + Usuario_Surver.getUsuario() + ", " + Usuario_Surver.GetNombreCompleto() + ", " + Usuario_Surver.getEmpresa() + ", " + Usuario_Surver.getSegmento() + ", " + Usuario_Surver.getRFC() + TextManagement.NewLine();
+//                        }
+//                        continue;
+//                    }
+//                    LogString += "El usuario" + Usuario.getUserName() + " RFC: " + Usuario.getUserName() + " No existe en " + Usuario.getIdNumber() + Information.Fuente + TextManagement.NewLine();
+//                }
+//            }
+        }
+
+        LogString = Usuarios.stream().map(Usuario -> Usuario.getReason()).reduce(LogString, String::concat); //recuperar Log
+
         CreateFile.Writefile("Log_Actualizar_usuario_por_RFC_3", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -271,18 +332,40 @@ public class Funciones {
         ArrayList<UsuarioGenerico> Usuarios = MoodleWerbServCreator.AllUsers(Conf.getCLI_WEBSERVICE_ROOT(), Conf.getCLI_WEBSERVICE_TOKEN());
         String exportmsg = "Evento Actualizar informacion de usuario por Username Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
         String LogString = "";
-        if (Usuarios != null)
-            for (UsuarioGenerico Usuario : Usuarios) {
+        if (Usuarios != null) {
+            if (!Usuarios.isEmpty()) {
+                Usuarios.removeIf(Usuario -> Usuario.getSuspended().equals("1"));
+            }
+            Usuarios.stream().forEach(Usuario -> {
                 UsuarioSurver Usuario_Surver = this.SurverConn.GetUsuarioporUsername(Usuario.getUserName());
                 if (Usuario_Surver != null) {
                     if (Usuario_Surver.getId_empleado() != -1) {
-                        if (MoodleWerbServCreator.ModificarUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Usuario.getID(), Usuario_Surver))
-                            LogString += "Nuevos datos de usuario " + Usuario.getUserName() + ": " + Usuario_Surver.getUsuario() + ", " + Usuario_Surver.GetNombreCompleto() + ", " + Usuario_Surver.getEmpresa() + ", " + Usuario_Surver.getSegmento() +", "+ Usuario_Surver.getRFC() + TextManagement.NewLine();
-                        continue;
+                        if (MoodleWerbServCreator.ModificarUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Usuario.getID(), Usuario_Surver)) {
+                            Usuario.setReason("Nuevos datos de usuario " + Usuario.getUserName() + ": " + Usuario_Surver.getUsuario() + ", " + Usuario_Surver.GetNombreCompleto() + ", " + Usuario_Surver.getEmpresa() + ", " + Usuario_Surver.getSegmento() + ", " + Usuario_Surver.getRFC() + TextManagement.NewLine());
+                        }
+                    } else {
+                        Usuario.setReason("El usuario " + Usuario.getUserName() + " RFC: " + Usuario.getUserName() + " No existe en " + Information.Fuente + TextManagement.NewLine());
                     }
-                    LogString += "El usuario " + Usuario.getUserName() + " RFC: " + Usuario.getUserName() + " No existe en " + Information.Fuente  + TextManagement.NewLine();
+
                 }
-            }
+
+            });
+//            for (UsuarioGenerico Usuario : Usuarios) {
+//                UsuarioSurver Usuario_Surver = this.SurverConn.GetUsuarioporUsername(Usuario.getUserName());
+//                if (Usuario_Surver != null) {
+//                    if (Usuario_Surver.getId_empleado() != -1) {
+//                        if (MoodleWerbServCreator.ModificarUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Usuario.getID(), Usuario_Surver)) {
+//                            LogString += "Nuevos datos de usuario " + Usuario.getUserName() + ": " + Usuario_Surver.getUsuario() + ", " + Usuario_Surver.GetNombreCompleto() + ", " + Usuario_Surver.getEmpresa() + ", " + Usuario_Surver.getSegmento() + ", " + Usuario_Surver.getRFC() + TextManagement.NewLine();
+//                        }
+//                        continue;
+//                    }
+//                    LogString += "El usuario " + Usuario.getUserName() + " RFC: " + Usuario.getUserName() + " No existe en " + Information.Fuente + TextManagement.NewLine();
+//                }
+//            }
+        }
+
+        LogString = Usuarios.stream().map(Usuario -> Usuario.getReason()).reduce(LogString, String::concat); //recuperar Log
+
         CreateFile.Writefile("Log_Actualizar_usuario_por_Username_4", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -303,22 +386,25 @@ public class Funciones {
         String LogString = "";
         Surver_Curso Curso_Surver = new Surver_Curso();
         ArrayList<Moodle_Curso> Cursos_Moodle = this.MoodleConn.getNotSincronizedMoodleCourses();
-        if (Cursos_Moodle != null)
+        if (Cursos_Moodle != null) {
             for (Moodle_Curso curso : Cursos_Moodle) {
                 ArrayList<Surver_Curso> Cursos_Surver = this.SurverConn.getCoursesByShortname(curso.getShortname());
                 if (Cursos_Surver == null) {
                     Curso_Surver.setFromMoodleCourse(curso);
                     if (this.SurverConn.GuardarCurso(true, Curso_Surver)) {
                         LogString += "Nuevo Curso Registrado en: " + Information.Fuente + " -> " + Information.Fuente + Curso_Surver.getNombre_Corto() + TextManagement.NewLine();
-                        if (this.MoodleConn.GuardarSincronizado(curso.getId()))
+                        if (this.MoodleConn.GuardarSincronizado(curso.getId())) {
                             LogString += "Curso en Moodle Actualizado: " + curso.getShortname() + TextManagement.NewLine(2);
+                        }
                     }
                     continue;
                 }
                 Curso_Surver.setFromMoodleCourse(curso);
-                if (this.SurverConn.GuardarCurso(false, Curso_Surver))
+                if (this.SurverConn.GuardarCurso(false, Curso_Surver)) {
                     LogString += "Actualizacion de informacion de curso en " + Information.Fuente + Curso_Surver.getNombre_Corto() + TextManagement.NewLine(2);
+                }
             }
+        }
         CreateFile.Writefile("Log_Sincronizar_Cursos_5", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -331,12 +417,13 @@ public class Funciones {
 
     public void SyncCourses_Surver2Moodle() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("SyncCourses_Surver2Moodle()"))
+        if (!CheckConnection("SyncCourses_Surver2Moodle()")) {
             return;
+        }
         String exportmsg = "Evento Sincronizar Cursos " + Information.Fuente + " -> " + Information.Plataforma + " Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
         String LogString = "";
         ArrayList<Surver_Curso> Surver_Cursos = this.SurverConn.getCourses();
-        if (Surver_Cursos != null)
+        if (Surver_Cursos != null) {
             for (Surver_Curso surver_curso : Surver_Cursos) {
                 Courses CursoMood = MoodleWerbServCreator.searchCourseShortName(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), surver_curso.getNombre_Corto());
                 if (CursoMood == null) {
@@ -356,6 +443,7 @@ public class Funciones {
                 }
                 LogString += "Curso de " + Information.Plataforma + " no se logró actualizar con datos: " + surver_curso.getNombre_Corto() + TextManagement.NewLine(2);
             }
+        }
 
         CreateFile.Writefile("Log_Sincronizar_Cursos_6", FileExtention.txt, LogString);
 
@@ -369,9 +457,9 @@ public class Funciones {
 
     public void CRONTasks() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("CRONTasks()")) {
+        /*if (!CheckConnection("CRONTasks()")) {
             return;
-        }
+        }*/
         String LogString = "Evento Tareas de CRON Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
 
         LogString += MoodleWerbServCreator.runtasks(Conf.getCLI_CRON_PATH(), Conf.getCLI_CRON_KEY()) + TextManagement.NewLine(4) + TextManagement.Separator() + TextManagement.NewLine();
@@ -392,7 +480,7 @@ public class Funciones {
         String ExportMsg = "Evento Suspender Usuarios Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
         String LogString = "";
         ArrayList<UsuarioSurver> Users2Suspend = this.SurverConn.GetUninscriptions();
-        if (Users2Suspend != null)
+        if (Users2Suspend != null) {
             for (UsuarioSurver us : Users2Suspend) {
                 UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), us.getRFC());
                 if (UsuarioGen != null) {
@@ -410,6 +498,7 @@ public class Funciones {
                 }
                 LogString += "El RFC: " + us.getRFC() + " No existe en " + Information.Fuente + TextManagement.NewLine(2);
             }
+        }
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
         CreateFile.Writefile("Log_Suspender_Usuarios_8", FileExtention.txt, LogString);
 
@@ -422,13 +511,14 @@ public class Funciones {
 
     public void reactivateUsers() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("reactivateUsers()"))
+        if (!CheckConnection("reactivateUsers()")) {
             return;
+        }
         String exportMsg = "Evento Reactivado Usuarios Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
 
         String LogString = "";
         ArrayList<UsuarioSurver> Users2Suspend = this.SurverConn.GetReactivations();
-        if (Users2Suspend != null)
+        if (Users2Suspend != null) {
             for (UsuarioSurver us : Users2Suspend) {
                 UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), us.getRFC());
                 if (UsuarioGen != null) {
@@ -446,6 +536,7 @@ public class Funciones {
                 }
                 LogString += "El RFC: " + us.getRFC() + " No existe en " + Information.Fuente + TextManagement.NewLine(2);
             }
+        }
         CreateFile.Writefile("Log_Reactivado_Usuarios_9", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -458,13 +549,14 @@ public class Funciones {
 
     public void AudPt1_UnEnrollments011() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("AudPt1_UnEnrollments011()"))
+        if (!CheckConnection("AudPt1_UnEnrollments011()")) {
             return;
+        }
         String exportMsg = "Evento AuditoriaParte1 DesInscribir usuarios Inactivos Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
 
         String LogString = "";
         ArrayList<Surver_Asignacion_Cursos> Users2Suspend = this.SurverConn.GetCourseUninscriptions_Empl0_Cur1_Per1();
-        if (Users2Suspend != null)
+        if (Users2Suspend != null) {
             for (Surver_Asignacion_Cursos us : Users2Suspend) {
                 UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), us.getRFC());
                 if (UsuarioGen != null) {
@@ -485,6 +577,7 @@ public class Funciones {
                     }
                 }
             }
+        }
         CreateFile.Writefile("Log_AuditoriaParte1_90", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -497,23 +590,31 @@ public class Funciones {
 
     public void AudPt2_UnEnrollments101() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("AudPt2_UnEnrollments101()"))
+        if (!CheckConnection("AudPt2_UnEnrollments101()")) {
             return;
+        }
         String exportMsg = "Evento AuditoriaParte2 DesInscribir usuarios Inactivos Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
 
         String LogString = "";
         ArrayList<Surver_Asignacion_Cursos> Users2Suspend = this.SurverConn.GetCourseUninscriptions_Empl1_Cur0_Per1();
-        if (Users2Suspend != null)
+        if (Users2Suspend != null) {
             for (Surver_Asignacion_Cursos us : Users2Suspend) {
                 Courses Curs = MoodleWerbServCreator.searchCourseShortName(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), us.getCurso());
                 if (Curs != null) {
                     ArrayList<UsuarioGenerico> EnrrolledUsers = MoodleWerbServCreator.getUsersFromCourse(Conf.getCLI_WEBSERVICE_ROOT(), Conf.getCLI_WEBSERVICE_TOKEN(), Curs.getID());
-                    for (UsuarioGenerico User : EnrrolledUsers){
-                        MoodleWerbServCreator.bajaCursoUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(),this.Conf.getCLI_WEBSERVICE_TOKEN(),User.getID(),Curs.getID());
+                    if (EnrrolledUsers != null) {
+                        EnrrolledUsers.stream().forEach(User -> {
+                            MoodleWerbServCreator.bajaCursoUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), User.getID(), Curs.getID());
+                        });
                     }
-                    LogString += ("Los Usuarios del curso (" + Curs.getNombreCorto() + ") "+ Curs.getNombreMostrado() + " fueron Desinscritos");
+
+//                    for (UsuarioGenerico User : EnrrolledUsers) {
+//                        MoodleWerbServCreator.bajaCursoUsuario(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), User.getID(), Curs.getID());
+//                    }
+                    LogString += ("Los Usuarios del curso (" + Curs.getNombreCorto() + ") " + Curs.getNombreMostrado() + " fueron Desinscritos");
                 }
             }
+        }
         CreateFile.Writefile("Log_AuditoriaParte2_91", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -526,12 +627,13 @@ public class Funciones {
 
     public void AudPt3_UnEnrollments100() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("AudPt3_UnEnrollments100()"))
+        if (!CheckConnection("AudPt3_UnEnrollments100()")) {
             return;
+        }
         String exportMsg = "Evento AuditoriaParte3 DesInscribir usuarios Inactivos Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
         String LogString = "";
         ArrayList<Surver_Asignacion_Cursos> Users2Suspend = this.SurverConn.GetCourseUninscriptions_Empl1_Cur0_Per0();
-        if (Users2Suspend != null)
+        if (Users2Suspend != null) {
             for (Surver_Asignacion_Cursos us : Users2Suspend) {
                 UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), us.getRFC());
                 if (UsuarioGen != null) {
@@ -552,6 +654,7 @@ public class Funciones {
                     }
                 }
             }
+        }
         CreateFile.Writefile("Log_AuditoriaParte3_92", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -564,13 +667,14 @@ public class Funciones {
 
     public void AudPt4_UnEnrollments000() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("AudPt4_UnEnrollments000()"))
+        if (!CheckConnection("AudPt4_UnEnrollments000()")) {
             return;
+        }
         String exportMsg = "Evento AuditoriaParte4 DesInscribir usuarios Inactivos Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
 
         String LogString = "";
         ArrayList<Surver_Asignacion_Cursos> Users2Suspend = this.SurverConn.GetCourseUninscriptions_Empl0_Cur0_Per0();
-        if (Users2Suspend != null)
+        if (Users2Suspend != null) {
             for (Surver_Asignacion_Cursos us : Users2Suspend) {
                 UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), us.getRFC());
                 if (UsuarioGen != null) {
@@ -591,6 +695,7 @@ public class Funciones {
                     }
                 }
             }
+        }
         CreateFile.Writefile("Log_AuditoriaParte4_93", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -603,13 +708,14 @@ public class Funciones {
 
     public void AudPt5_UnEnrollments110() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("AudPt5_UnEnrollments110()"))
+        if (!CheckConnection("AudPt5_UnEnrollments110()")) {
             return;
+        }
         String exportMsg = "Evento AuditoriaParte4 DesInscribir usuarios Inactivos Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
 
         String LogString = "";
         ArrayList<Surver_Asignacion_Cursos> Users2Suspend = this.SurverConn.GetCourseUninscriptions_Empl1_Cur1_Per0();
-        if (Users2Suspend != null)
+        if (Users2Suspend != null) {
             for (Surver_Asignacion_Cursos us : Users2Suspend) {
                 UsuarioGenerico UsuarioGen = MoodleWerbServCreator.buscarUsuario_RFC(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), us.getRFC());
                 if (UsuarioGen != null) {
@@ -630,6 +736,7 @@ public class Funciones {
                     }
                 }
             }
+        }
         CreateFile.Writefile("Log_AuditoriaParte5_94", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -642,16 +749,17 @@ public class Funciones {
 
     public void AudPt5_enrollByChange(ArrayList<Surver_Control_Puesto> Controles) {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("AudPt5_enrollByChange()"))
+        if (!CheckConnection("AudPt5_enrollByChange()")) {
             return;
+        }
         String exportMsg = "Evento AudPt5_enrollByChange Inscribir a cursos faltantes por cambio de control de puesto Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
 
         String LogString = "";
-        if (Controles != null)
+        if (Controles != null) {
             for (Surver_Control_Puesto Control : Controles) {
                 Surver_Curso Curso = new Surver_Curso();
-                ArrayList<Surver_Curso> Cursos = this.SurverConn.getCoursesDiferences(Control.getNuevo_perfil(), Control.getViejo_perfil());
-                if (Cursos != null)
+                ArrayList<Surver_Curso> Cursos = this.SurverConn.getCoursesDiferences(Control.getViejo_perfil(), Control.getNuevo_perfil());
+                if (Cursos != null) {
                     for (Surver_Curso Curso1 : Cursos) {
                         Courses CurMood = MoodleWerbServCreator.searchCourseShortName(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Curso1.getNombre_Corto());
                         if (CurMood != null) {
@@ -675,9 +783,10 @@ public class Funciones {
                         }
                         LogString += "El curso: " + Curso1.getNombre_Corto() + " No existe en " + Information.Plataforma + TextManagement.NewLine(2);
                     }
+                }
             }
+        }
         CreateFile.Writefile("Log_AuditoriaParte5_94", FileExtention.txt, LogString);
-
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
         exportMsg += TextManagement.Separator() + TextManagement.NewLine(4);
@@ -689,16 +798,17 @@ public class Funciones {
 
     public void AudPt6_UnenrollByChange(ArrayList<Surver_Control_Puesto> Controles) {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("AudPt6_UnenrollByChange()"))
+        if (!CheckConnection("AudPt6_UnenrollByChange()")) {
             return;
+        }
         String exportMsg = "Evento AudPt6_UnenrollByChange Inscribir a cursos faltantes por cambio de control de puesto Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
 
         String LogString = "";
-        if (Controles != null)
+        if (Controles != null) {
             for (Surver_Control_Puesto Control : Controles) {
-                Surver_Curso Curso = new Surver_Curso();
-                ArrayList<Surver_Curso> Cursos = this.SurverConn.getCoursesDiferences(Control.getViejo_perfil(), Control.getNuevo_perfil());
-                if (Cursos != null)
+                //Surver_Curso Curso = new Surver_Curso();
+                ArrayList<Surver_Curso> Cursos = this.SurverConn.getCoursesDiferences(Control.getNuevo_perfil(), Control.getViejo_perfil());
+                if (Cursos != null) {
                     for (Surver_Curso Curso1 : Cursos) {
                         Courses CurMood = MoodleWerbServCreator.searchCourseShortName(this.Conf.getCLI_WEBSERVICE_ROOT(), this.Conf.getCLI_WEBSERVICE_TOKEN(), Curso1.getNombre_Corto());
                         if (CurMood != null) {
@@ -721,7 +831,9 @@ public class Funciones {
                         }
                         LogString += "El curso: " + Curso1.getNombre_Corto() + " No existe en " + Information.Plataforma + TextManagement.NewLine(2);
                     }
+                }
             }
+        }
         CreateFile.Writefile("Log_AuditoriaParte6_95", FileExtention.txt, LogString);
 
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
@@ -734,23 +846,26 @@ public class Funciones {
 
     public void AuditoriasControlPuesto() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("AuditoriasControlPuesto()"))
+        if (!CheckConnection("AuditoriasControlPuesto()")) {
             return;
+        }
         String LogString = "Evento Auditorias Control Puesto Iniciado el: " + (new SimpleDateFormat("dd/MM/yyyy hh:mm:ss")).format(new Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
         ArrayList<Surver_Control_Puesto> Controles = this.SurverConn.getContolCambios_SinSync();
-        AudPt5_enrollByChange(Controles);
+        //AudPt5_enrollByChange(Controles);
         AudPt6_UnenrollByChange(Controles);
-        if (Controles != null)
+        if (Controles != null) {
             for (Surver_Control_Puesto Controle : Controles) {
-                if (!this.SurverConn.SetContolCambiosInactivo(Controle))
+                if (!this.SurverConn.SetContolCambiosInactivo(Controle)) {
                     LogString += "Error al inactivar Control_puesto " + LogString + Controle.toString();
+                }
             }
+        }
         TimeTranscurred = (System.nanoTime() - TimeTranscurred) / 1000000000;
         LogString += TextManagement.Separator() + TextManagement.NewLine(4);
         LogString += "Evento Auditorias Control Puesto Terminado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine()
                 + TextManagement.Separator() + TextManagement.NewLine();
         LogString += "Tiempo Transcurrido de sistema: " + TextManagement.TransformSecondsToTime(TimeTranscurred);
-        WinLog.WriteEvent(LogString, EntryType.Information, 95);
+        WinLog.WriteEvent(LogString, EntryType.Information, 96);
     }
 
     private boolean isEnrolled2Course(UsuarioGenerico Usuario, Courses Curso) {
@@ -762,7 +877,6 @@ public class Funciones {
                 }
             }
         } catch (Exception e) {
-            System.out.println("a");
             return false;
         }
 
@@ -771,8 +885,9 @@ public class Funciones {
 
     public void SyncEmployees2Surver() {
         long TimeTranscurred = System.nanoTime();
-        if (!CheckConnection("SyncEmployees2Surver()"))
+        if (!CheckConnection("SyncEmployees2Surver()")) {
             return;
+        }
         String exportMsg = "Evento AudPt6_UnenrollByChange Inscribir a cursos faltantes por cambio de control de puesto Iniciado el: " + new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(new java.util.Date()) + TextManagement.NewLine() + TextManagement.Separator() + TextManagement.NewLine();
 
         String LogString = "";

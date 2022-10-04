@@ -1,0 +1,98 @@
+El curso: Aseguramiento de la Calidad No existe en Moodle
+
+El Usuario Usuario_Surver{Nombre = SARA MARIBEL, Paterno = QUINTANA, Materno = CARRIZALES, RFC = QUCS830513E79, Usuario = sara.quintana, Correo = sara.quintana@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: Basecamp
+
+El Usuario Usuario_Surver{Nombre = SARA MARIBEL, Paterno = QUINTANA, Materno = CARRIZALES, RFC = QUCS830513E79, Usuario = sara.quintana, Correo = sara.quintana@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: Cierre de Caja Virtual
+
+El Usuario Usuario_Surver{Nombre = SARA MARIBEL, Paterno = QUINTANA, Materno = CARRIZALES, RFC = QUCS830513E79, Usuario = sara.quintana, Correo = sara.quintana@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: Pago/Cobro
+
+El Usuario Usuario_Surver{Nombre = SARA MARIBEL, Paterno = QUINTANA, Materno = CARRIZALES, RFC = QUCS830513E79, Usuario = sara.quintana, Correo = sara.quintana@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: Estado de Cuenta
+
+El Usuario Usuario_Surver{Nombre = SARA MARIBEL, Paterno = QUINTANA, Materno = CARRIZALES, RFC = QUCS830513E79, Usuario = sara.quintana, Correo = sara.quintana@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: Cobranza Interna
+
+El Usuario Usuario_Surver{Nombre = SARA MARIBEL, Paterno = QUINTANA, Materno = CARRIZALES, RFC = QUCS830513E79, Usuario = sara.quintana, Correo = sara.quintana@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: Conciliaciones
+
+El Usuario Usuario_Surver{Nombre = SARA MARIBEL, Paterno = QUINTANA, Materno = CARRIZALES, RFC = QUCS830513E79, Usuario = sara.quintana, Correo = sara.quintana@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: Retiros y Cierre de Caja
+
+El Usuario Usuario_Surver{Nombre = SARA MARIBEL, Paterno = QUINTANA, Materno = CARRIZALES, RFC = QUCS830513E79, Usuario = sara.quintana, Correo = sara.quintana@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: BPM - 
+
+El usuario Usuario_Surver{Nombre = BRAYAN DAVID, Paterno = MARTINEZ, Materno = GOMEZ, RFC = MAGB010313TJ6, Usuario = brayan.martinez, Correo = brayan.martinez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (10) Producción Uranio}no existe en el curso: BPM - 
+
+El Usuario Usuario_Surver{Nombre = MIGUEL ANGEL, Paterno = HERNANDEZ, Materno = BAEZA, RFC = HEBM950626FF5, Usuario = miguel.hernandez, Correo = miguel.hernandez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: DORMAN 1
+
+El Usuario Usuario_Surver{Nombre = MIGUEL ANGEL, Paterno = HERNANDEZ, Materno = BAEZA, RFC = HEBM950626FF5, Usuario = miguel.hernandez, Correo = miguel.hernandez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: DORMAN 2
+
+El Usuario Usuario_Surver{Nombre = MIGUEL ANGEL, Paterno = HERNANDEZ, Materno = BAEZA, RFC = HEBM950626FF5, Usuario = miguel.hernandez, Correo = miguel.hernandez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: BPM - 
+
+El Usuario Usuario_Surver{Nombre = MIGUEL ANGEL, Paterno = HERNANDEZ, Materno = BAEZA, RFC = HEBM950626FF5, Usuario = miguel.hernandez, Correo = miguel.hernandez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: Basecamp
+
+El Usuario Usuario_Surver{Nombre = MIGUEL ANGEL, Paterno = HERNANDEZ, Materno = BAEZA, RFC = HEBM950626FF5, Usuario = miguel.hernandez, Correo = miguel.hernandez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: DORMAN 3
+
+El usuario Usuario_Surver{Nombre = VERONICA, Paterno = ESTEVEZ, Materno = VELAZQUEZ, RFC = EEVV970301GR2, Usuario = veronica.estevez, Correo = veronica.estevez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (5) Prorrateo Productivas}no existe en el curso: DORMAN 3
+
+El usuario Usuario_Surver{Nombre = SERGIO, Paterno = VALADEZ, Materno = DELGADILLO, RFC = VADS950904RE4, Usuario = sergio.valadez, Correo = sergio.valadez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (28) Ventas Veracruz}no existe en el curso: BPM - 
+
+El usuario Usuario_Surver{Nombre = SERGIO, Paterno = VALADEZ, Materno = DELGADILLO, RFC = VADS950904RE4, Usuario = sergio.valadez, Correo = sergio.valadez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (28) Ventas Veracruz}no existe en el curso: Basecamp
+
+El usuario Usuario_Surver{Nombre = SERGIO, Paterno = VALADEZ, Materno = DELGADILLO, RFC = VADS950904RE4, Usuario = sergio.valadez, Correo = sergio.valadez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (28) Ventas Veracruz}no existe en el curso: DORMAN 3
+
+El Usuario Usuario_Surver{Nombre = ALVARO IVAN, Paterno = RAMIREZ, Materno = ESPINOSA, RFC = RAEA990908BC0, Usuario = alvaro.ramirez, Correo = alvaro.ramirez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (8) Comercio Exterior} fue dado de baja del curso: DORMAN 1
+
+El Usuario Usuario_Surver{Nombre = DANIEL ALFONSO, Paterno = MENDOZA, Materno = MENDOZA, RFC = MEMD980801RM4, Usuario = daniel.mendoza, Correo = daniel.mendoza@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (8) Comercio Exterior} fue dado de baja del curso: BPM - 
+
+El Usuario Usuario_Surver{Nombre = LIZBETH, Paterno = FERNANDEZ, Materno = MORALES, RFC = FEML951111K48, Usuario = lizbeth.fernandez, Correo = lizbeth.fernandez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (27) E-Commerce} fue dado de baja del curso: BPM - 
+
+El Usuario Usuario_Surver{Nombre = LIZBETH, Paterno = FERNANDEZ, Materno = MORALES, RFC = FEML951111K48, Usuario = lizbeth.fernandez, Correo = lizbeth.fernandez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (27) E-Commerce} fue dado de baja del curso: Socio
+
+El Usuario Usuario_Surver{Nombre = LIZBETH, Paterno = FERNANDEZ, Materno = MORALES, RFC = FEML951111K48, Usuario = lizbeth.fernandez, Correo = lizbeth.fernandez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (27) E-Commerce} fue dado de baja del curso: Basecamp
+
+El Usuario Usuario_Surver{Nombre = FERNANDA AMAIRANI, Paterno = MACIAS, Materno = NIETO, RFC = MANF0006105V6, Usuario = fernanda.macias, Correo = fernanda.macias@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: BPM - 
+
+El Usuario Usuario_Surver{Nombre = FERNANDA AMAIRANI, Paterno = MACIAS, Materno = NIETO, RFC = MANF0006105V6, Usuario = fernanda.macias, Correo = fernanda.macias@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: DORMAN 3
+
+El Usuario Usuario_Surver{Nombre = FERNANDA AMAIRANI, Paterno = MACIAS, Materno = NIETO, RFC = MANF0006105V6, Usuario = fernanda.macias, Correo = fernanda.macias@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: W900
+
+El Usuario Usuario_Surver{Nombre = FERNANDA AMAIRANI, Paterno = MACIAS, Materno = NIETO, RFC = MANF0006105V6, Usuario = fernanda.macias, Correo = fernanda.macias@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: Socio
+
+El Usuario Usuario_Surver{Nombre = FERNANDA AMAIRANI, Paterno = MACIAS, Materno = NIETO, RFC = MANF0006105V6, Usuario = fernanda.macias, Correo = fernanda.macias@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: Basecamp
+
+El Usuario Usuario_Surver{Nombre = PEDRO QUINTIN, Paterno = SALAS, Materno = MORALES, RFC = SAMP951014JF8, Usuario = pedro.salas, Correo = pedro.salas@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (9) Producción Esmeralda} fue dado de baja del curso: BPM - 
+
+El Usuario Usuario_Surver{Nombre = JOSELITO, Paterno = MIRON, Materno = CORDOBA, RFC = MICJ8704151N6, Usuario = joselito.miron, Correo = joselito.miron@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: DORMAN 1
+
+El Usuario Usuario_Surver{Nombre = JOSELITO, Paterno = MIRON, Materno = CORDOBA, RFC = MICJ8704151N6, Usuario = joselito.miron, Correo = joselito.miron@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: DORMAN 3
+
+El Usuario Usuario_Surver{Nombre = JOSELITO, Paterno = MIRON, Materno = CORDOBA, RFC = MICJ8704151N6, Usuario = joselito.miron, Correo = joselito.miron@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: W900
+
+El Usuario Usuario_Surver{Nombre = JOSELITO, Paterno = MIRON, Materno = CORDOBA, RFC = MICJ8704151N6, Usuario = joselito.miron, Correo = joselito.miron@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (6) Ventas México} fue dado de baja del curso: DORMAN 2
+
+El Usuario Usuario_Surver{Nombre = JOSE DE JESUS, Paterno = SORIANO, Materno = ALVAREZ, RFC = SOAJ9004069L2, Usuario = jose.soriano, Correo = jose.soriano@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (15) Ventas Puebla} fue dado de baja del curso: DORMAN 2
+
+El Usuario Usuario_Surver{Nombre = JOSE DE JESUS, Paterno = SORIANO, Materno = ALVAREZ, RFC = SOAJ9004069L2, Usuario = jose.soriano, Correo = jose.soriano@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (15) Ventas Puebla} fue dado de baja del curso: DORMAN 1
+
+El Usuario Usuario_Surver{Nombre = JOSE DE JESUS, Paterno = SORIANO, Materno = ALVAREZ, RFC = SOAJ9004069L2, Usuario = jose.soriano, Correo = jose.soriano@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (15) Ventas Puebla} fue dado de baja del curso: DORMAN 3
+
+El Usuario Usuario_Surver{Nombre = HAZIEL OMAR, Paterno = PEREZ, Materno = GUIJOSA, RFC = PEGH001009L34, Usuario = haziel.perez, Correo = haziel.perez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: DORMAN 2
+
+El Usuario Usuario_Surver{Nombre = HAZIEL OMAR, Paterno = PEREZ, Materno = GUIJOSA, RFC = PEGH001009L34, Usuario = haziel.perez, Correo = haziel.perez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: DORMAN 1
+
+El Usuario Usuario_Surver{Nombre = HAZIEL OMAR, Paterno = PEREZ, Materno = GUIJOSA, RFC = PEGH001009L34, Usuario = haziel.perez, Correo = haziel.perez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: BPM - 
+
+El Usuario Usuario_Surver{Nombre = HAZIEL OMAR, Paterno = PEREZ, Materno = GUIJOSA, RFC = PEGH001009L34, Usuario = haziel.perez, Correo = haziel.perez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: DORMAN 3
+
+El Usuario Usuario_Surver{Nombre = HAZIEL OMAR, Paterno = PEREZ, Materno = GUIJOSA, RFC = PEGH001009L34, Usuario = haziel.perez, Correo = haziel.perez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (40) Ventas Logiflekk} fue dado de baja del curso: Basecamp
+
+El Usuario Usuario_Surver{Nombre = ALBERTO, Paterno = PEREZ, Materno = GUIJOSA, RFC = PEGA961120U58, Usuario = alberto.perez, Correo = alberto.perez@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (14) Ventas Tizayuca} fue dado de baja del curso: W900
+
+El usuario Usuario_Surver{Nombre = ERICK, Paterno = GUERRERO, Materno = TREJO, RFC = GUTE0007254G0, Usuario = erick.guerrero, Correo = erick.guerrero@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (11) Producción Marbal}no existe en el curso: BPM - 
+
+El curso: Aseguramiento de la Calidad No existe en Moodle
+
+El Usuario Usuario_Surver{Nombre = JAROD OMAR, Paterno = ROBLES, Materno = BRIONES, RFC = ROBJ0102145YA, Usuario = jarod.robles, Correo = jarod.robles@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (9) Producción Esmeralda} fue dado de baja del curso: DORMAN 1
+
+El usuario Usuario_Surver{Nombre = EDER, Paterno = REYES, Materno = ACEVEDO, RFC = REAE830125SU4, Usuario = eder.reyes, Correo = eder.reyes@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (19) Ventas Puebla II}no existe en el curso: BPM - 
+
+El usuario Usuario_Surver{Nombre = EDER, Paterno = REYES, Materno = ACEVEDO, RFC = REAE830125SU4, Usuario = eder.reyes, Correo = eder.reyes@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (19) Ventas Puebla II}no existe en el curso: DORMAN 3
+
+El usuario Usuario_Surver{Nombre = EDER, Paterno = REYES, Materno = ACEVEDO, RFC = REAE830125SU4, Usuario = eder.reyes, Correo = eder.reyes@cursos.com.mx, Empresa = RFV TRUCK PARTS AND ACCESSORIES S.A. DE C.V., Segmento = (19) Ventas Puebla II}no existe en el curso: W900
+
