@@ -1,9 +1,0 @@
-Usuario_Surver{
-Nombre = JOSE LUIS
-, Paterno = RAMIREZ
-, Materno = CRUZ
-, RFC = [SIN RFC]
-, Usuario = jose.ramirez
-, Correo = jose.ramirez@cursos.com.mx
-, Empresa = RFV TRUCK PARTS AND ACCESSORIES
-, Segmento = (1) Matriz}
